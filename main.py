@@ -99,11 +99,11 @@ print()
 
 #next code gets scores for each "best" model on the test fold
 print("POLY. SCORE RESULTS ON TEST FOLD")
-print(f"Poly. negative RMSE on test data: {poly_gscv.score(x_test, y_test):.3f} [1/d]")
+print(f"Poly. RMSE on test data: {-1*poly_gscv.score(x_test, y_test):.3f} [1/d]")
 print(f"kNN R²  on test data            : {r2_score(y_test, poly_gscv.predict(x_test)):.3f}")
 print()
 print("KNN SCORE RESULTS ON TEST FOLD")
-print(f"kNN negative RMSE on test data: {kNN_gscv.score(x_test, y_test):.3f} [1/d]")
+print(f"kNN RMSE on test data: {-1*kNN_gscv.score(x_test, y_test):.3f} [1/d]")
 print()
 
 #code displays coefficients+powers for poly. model fitted on whole data set.

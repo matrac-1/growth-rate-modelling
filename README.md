@@ -9,7 +9,13 @@ The objective of this project was to explore the use of polynomial and k nearest
 -	Analyzed the effect of key process features (temperature, pH, lactate levels, glucose levels) on specific growth rate using the chosen model.
 -	Explored the use of scikit-learn libraries (pipelines, GridSearchCV, train_test_split, StandardScaler, PolynomialFeatures, metrics, etc.) for the first time.
 
-## Environment (TBD)
+## Environment
+- Python 3.14.7
+- pandas 3.0.5
+- NumPy 2.5.2
+- Matplotlib 3.11.0
+- SciPy 1.18.0
+- scikit-learn 1.9.0
 ## Code Design
 The following section describes the workflow of the Python code in main.py
 ### Data Loading and Preprocessing (ln 13-28)

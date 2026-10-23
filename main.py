@@ -113,7 +113,7 @@ poly_gscv.fit(x, y)
 feature_names = poly_gscv.best_estimator_.named_steps["polynomialfeatures"].get_feature_names_out(features)
 coefs = poly_gscv.best_estimator_.named_steps["linearregression"].coef_
 intercept = poly_gscv.best_estimator_.named_steps["linearregression"].intercept_
-print("FINAL POLYNOMIAL MODEL FITTED ON ENTIRE DATA SET")
+print("FINAL SCALED POLYNOMIAL MODEL FITTED ON ENTIRE DATA SET")
 print(f"{intercept:.6f} (intercept)")
 for coef, name in zip(coefs, feature_names):
     print(f"{coef:.6f} * {name}")
@@ -177,4 +177,18 @@ ax.xaxis.set_major_locator(MultipleLocator(1))
 
 fig.savefig(os.path.join("figures", "validation_curve_kNN.png"))
 plt.close(fig)
+
+#redoes poly. model fitting + output print, this time without using standardscaler to be able to see
+#actual coefficients to be used if trying to fit data
+polymodel2 = make_pipeline(PolynomialFeatures(degree = 2,include_bias=False), LinearRegression())
+poly_gscv2 = GridSearchCV(polymodel2, param_grid=param_grid, cv=4, scoring={"rmse": "neg_root_mean_squared_error","r2": "r2"}, refit="rmse",return_train_score=True)
+poly_gscv2.fit(x, y)
+feature_names2 = poly_gscv2.best_estimator_.named_steps["polynomialfeatures"].get_feature_names_out(features)
+coefs2 = poly_gscv2.best_estimator_.named_steps["linearregression"].coef_
+intercept2 = poly_gscv2.best_estimator_.named_steps["linearregression"].intercept_
+print()
+print("FINAL UNSCALED POLYNOMIAL MODEL FITTED ON ENTIRE DATA SET")
+print(f"{intercept2:.6f} (intercept)")
+for coef, name in zip(coefs2, feature_names2):
+    print(f"{coef:.6f} * {name}")
 
